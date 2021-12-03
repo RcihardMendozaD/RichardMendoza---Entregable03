@@ -1,0 +1,99 @@
+
+<div class="container col-4" [hidden]="!exito">
+    <div class="alert alert-success">
+        <strong>¡ÉXITO!</strong> - Alumno registrado.
+      </div>
+</div>
+
+<div class="container col-6" [hidden]="tabla">
+<hr>
+<h2>Registrar Alumno</h2>
+<form class="row g-3 needs-validation" [formGroup]="alumnoForm" >
+    <div class="col-md-6">
+      <label for="validationCustom01" class="form-label" >Nombres</label>
+      <input type="text" class="form-control" id="validationCustom01" placeholder="Nombres" formControlName="nombre"  [(ngModel)]="nombre" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustom02" class="form-label">Apellidos</label>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="Apellidos" formControlName="apellidos" [(ngModel)]="apellido" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-10">
+        <label for="validationCustomUsername" class="form-label">Correo</label>
+        <div class="input-group has-validation">
+          <span class="input-group-text" id="inputGroupPrepend">@</span>
+          <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" placeholder="email@gmail.com" >
+          <div class="invalid-feedback">
+            Please choose a username.
+          </div>
+        </div>
+      </div>
+    <div class="col-md-2">
+      <label for="validationCustom03" class="form-label">Edad</label>
+      <input type="number" class="form-control" id="validationCustom03" formControlName="edad" >
+    </div>
+    <div class="col-md-6">
+      <label for="validationCustom04" class="form-label" >Cursos</label>
+      <select class="form-select" id="validationCustom04" formControlName="nombreCurso" placeholder="Seleccionar..."   required>
+        <option selected disabled value="" >Seleccionar...</option>
+        <option>Angular</option>
+        <option>Vue</option>
+        <option>React</option>
+        <option>JS</option>
+      </select>
+      <div class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+    <div class="col-md-6">
+        <label for="validationCustom06" class="form-label">País</label>
+        <input type="text" class="form-control" id="validationCustom06" placeholder="País" formControlName="pais" [(ngModel)]="pais" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    <div class="col-12">
+        <button class="btn btn-primary" type="submit" [disabled]="!alumnoForm.valid"  (click)="onSubmit()">Registrar</button>
+    </div>
+    <div class="col-6">
+        <button class="btn btn-primary" type="submit" (click)="listarAlumnos()" >Ver Alumnos</button>
+    </div>
+  </form>
+  <hr>
+</div>
+
+<div class="container col-8" [hidden]="!tabla">
+<hr>
+<h2>Listado de alumnos</h2>
+<table class="table"> 
+    <thead>
+    <tr>
+      <th scope="col">Curso</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Correo</th>
+      <th scope="col">País</th>
+      <th scope="col">Edad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let alumno of listaAlumnos">
+      <th scope="row">{{alumno.curso}}</th>
+      <td>{{alumno.nombre}}</td>
+      <td>{{alumno.apellido}}</td>
+      <td >{{alumno.correo}}</td>
+      <td >{{alumno.pais}}</td>
+      <td>{{alumno.edad}}</td>
+    </tr>
+  </tbody>
+  </table>
+  <div class="col-12">
+    <button class="btn btn-primary" type="reset" (click)="regresar()" >Nuevos Alumnos</button>
+  </div>
+<hr>
+</div>
